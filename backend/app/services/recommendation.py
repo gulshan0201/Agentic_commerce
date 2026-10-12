@@ -209,6 +209,8 @@ def calculate_product_score(
     # -------------------------
 
     product_price = Decimal(product.price)
+    
+    
 
     if product_price <= request.budget_max:
 
@@ -230,6 +232,8 @@ def calculate_product_score(
             reasons.append(
                 "Uses the available budget efficiently"
             )
+            
+        
 
     else:
         return 0, [
@@ -303,19 +307,19 @@ def calculate_product_score(
 
     if request.gpu_required:
 
-        if has_gpu(product.specifications):
+        if not has_gpu(
+            product.specifications
+        ):
 
-            score += 15
+            return 0, [
+                "Product does not have the required dedicated GPU"
+            ]
 
-            reasons.append(
-                "Has a dedicated GPU"
-            )
+        score += 15
 
-        else:
-
-            reasons.append(
-                "Dedicated GPU requirement not satisfied"
-            )
+        reasons.append(
+            "Has a dedicated GPU"
+        )
 
     # -------------------------
     # 6. Minimum rating rule
