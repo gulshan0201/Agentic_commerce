@@ -27,12 +27,15 @@ class RecommendationRequest(BaseModel):
     )
 
     in_stock_only: bool = True
+    
 
 
 class RecommendationItem(BaseModel):
     product_id: int
 
     name: str
+    
+    rank: int
 
     brand: str | None
 
@@ -49,3 +52,6 @@ class RecommendationResponse(BaseModel):
     total_matches: int
 
     recommendations: list[RecommendationItem]
+    
+
+    

@@ -422,5 +422,11 @@ def recommend_products(
         ],
         reverse=True
     )
+    
+    for index, item in enumerate(
+        scored_products,
+        start=1
+    ):
+        item["rank"] = index
 
     return scored_products    

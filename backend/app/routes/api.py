@@ -6,11 +6,14 @@ from app.routes.health import router as health_router
 from app.routes.merchants import router as merchants_router
 from app.routes.products import router as products_router
 from app.routes.test import router as test_router
+from app.routes.intent import router as intent_router
 
 from app.routes.recommendations import (
     router as recommendations_router
 )
-
+from app.routes.agent import (
+    router as agent_router
+)
 
 api_router = APIRouter(
     prefix="/api/v1"
@@ -26,6 +29,13 @@ api_router.include_router(products_router)
 api_router.include_router(
     recommendations_router
 )
+api_router.include_router(
+    intent_router
+)
+api_router.include_router(
+    agent_router
+)
+
 
 # from fastapi import APIRouter
 
